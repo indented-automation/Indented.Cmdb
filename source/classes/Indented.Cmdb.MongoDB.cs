@@ -17,9 +17,9 @@ using MongoDB.Driver;
         #endregion
 
         #region Constructors
-        public MongoDB(MongoUrl url)
+        public MongoDB(MongoUrl Url, string DatabaseName, string CollectionName)
         {
-            Connect(url);
+            Connect(Url, DatabaseName, CollectionName);
         }
         #endregion
 
@@ -57,7 +57,7 @@ using MongoDB.Driver;
             return collection.DocumentSerializer.Deserialize(context);
         }
 
-        public List<string> FindDocument(string Filter = "", string Projection = "", int Limit = 0, int Skip = 0)
+        public List<string> FindDocument(string Filter = "", string Projection = "{ }", int Limit = 0, int Skip = 0)
         {
             BsonDocument filter = new BsonDocument();
             if (Filter != string.Empty)
@@ -69,7 +69,7 @@ using MongoDB.Driver;
             Collection.Find<BsonDocument>(filter)
                       .Limit(Limit)
                       .Skip(Skip)
-                      .Projection(Projection)
+                      .Project(Projection)
                       .ToList()
                       .ForEach(document => documents.Add(document.ToJson(WriterSettings)));
 

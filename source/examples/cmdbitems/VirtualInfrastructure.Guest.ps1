@@ -14,13 +14,13 @@ CmdbItem VirtualInfrastructure.Guest @{
         'VMManagementServer'
     )
 
-    Get = {
-        if ($Node.Type -eq 'HyperVVirtualMachine') {
-            & $Item.SCVMM $Node
-        } elseif ($Node.Type -eq 'VMWareVirtualMachine') {
-            & $Item.vSphere $Node
-        }
-    }
+    # Get = {
+    #     if ($Node.Type -eq 'HyperVVirtualMachine') {
+    #         & $Item.SCVMM $Node
+    #     } elseif ($Node.Type -eq 'VMWareVirtualMachine') {
+    #         & $Item.vSphere $Node
+    #     }
+    # }
 
     Import = {
         # Allows SCVMM to overwrite vSphere 
@@ -62,6 +62,11 @@ CmdbItem VirtualInfrastructure.Guest @{
                             VLanId             = $_.VirtualNetworkAdapters.VLanID | Where-Object { $_ -ne 0 }
                             VMCluster          = $_.VMHost.HostCluster.Name
                             VMHost             = $_.VMHost.Name
+                            BusinessFunction   = $_.CustomProperty['Business Function']
+                            HostType           = $_.CustomProperty['Host Type']
+                            ServerRole         = $_.CustomProperty['Server Role']
+                            ServiceName        = $_.CustomProperty['Service Name']
+                            ServiceOwner       = $_.CustomProperty['Service Owner']
                             VMManagementServer = $env:COMPUTERNAME
                         }
                     }
@@ -106,6 +111,11 @@ CmdbItem VirtualInfrastructure.Guest @{
                             VMCluster          = (VMWare.VimAutomation.Core\Get-Cluster -VMHost $_.VMHost).Name
                             VMHost             = $_.VMHost.Name
                             Notes              = $_.Notes
+                            BusinessFunction   = $_.CustomFields['Business Function']
+                            HostType           = $_.CustomFields['Host Type']
+                            ServerRole         = $_.CustomFields['Server Role']
+                            ServiceName        = $_.CustomFields['Service Name']
+                            ServiceOwner       = $_.CustomFields['Service Owner']
                             VMManagementServer = $managementServer
                         }
                     }

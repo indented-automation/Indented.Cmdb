@@ -10,13 +10,13 @@ CmdbItem VirtualInfrastructure.Host @{
         'VMManagementServer'
     )
 
-    Get = {
-        if ($Node.Type -eq 'HyperVVirtualMachineHost') {
-            & $Item.SCVMM $Node
-        } elseif ($Node.Type -eq 'VMWareVirtualMachineHost') {
-            & $Item.vSphere $Node
-        }
-    }
+    # Get = {
+    #     if ($Node.Type -eq 'HyperVVirtualMachineHost') {
+    #         & $Item.SCVMM $Node
+    #     } elseif ($Node.Type -eq 'VMWareVirtualMachineHost') {
+    #         & $Item.vSphere $Node
+    #     }
+    # }
 
     Import = {
         # Allows SCVMM to overwrite vSphere 

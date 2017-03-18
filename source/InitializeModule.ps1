@@ -29,7 +29,7 @@ function InitializeModule {
     } else {
         try {
             $mongoUrl = [MongoDB.Driver.MongoUrl]$Script:settings.DatabaseUri
-            $Script:mongoDBConnection = New-Object Indented.Cmdb.MongoDB(
+            $Script:mongoDBConnection = New-Object KScript.Cmdb.MongoDB(
                 $mongoUrl,
                 $Script:settings.DatabaseName,
                 $Script:settings.CollectionName

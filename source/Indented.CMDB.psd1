@@ -95,10 +95,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        LicenseUri = 'https://opensource.org/licenses/ISC'
+        LicenseUri = 'https://opensource.org/licenses/MIT'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/indented-automation/Indented.CMDB'
+        ProjectUri = 'https://github.com/indented-automation/Indented.Cmdb'
 
         # A URL to an icon representing this module.
         # IconUri = ''
